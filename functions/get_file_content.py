@@ -1,15 +1,13 @@
 import os
-from .config import *
+from .config import MAX_CHARS
 
 
 def get_file_content(working_directory, file_path):
     try:
-
         wd_abs = os.path.abspath(working_directory)
         target_abs = os.path.abspath(os.path.join(
             wd_abs, file_path))
 
-        print(target_abs)
         # python
         if not (target_abs == wd_abs or target_abs.startswith(wd_abs + os.sep)):
             return f'Error: Cannot read "{file_path}" as it is outside the permitted working directory'
