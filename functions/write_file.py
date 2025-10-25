@@ -1,4 +1,23 @@
 import os
+from google import genai
+
+schema_write_file = genai.types.FunctionDeclaration(
+    name="write_file",
+    description="Writes the contents that are passed in to the file that is also passed in",
+    parameters=genai.types.Schema(
+        type=genai.types.Type.OBJECT,
+        properties={
+            "file_path": genai.types.Schema(
+                type=genai.types.Type.STRING,
+                description="The file that is to be changed within the working directory. if the file/path does not exist it will be created.",
+            ),
+            "content": genai.types.Schema(
+                type=genai.types.Type.STRING,
+                description="The contents that are to be written the the file.",
+            )
+        },
+    ),
+)
 
 
 def write_file(working_directory, file_path, content):
